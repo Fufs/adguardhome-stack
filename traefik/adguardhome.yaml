@@ -1,0 +1,26 @@
+http:
+  routers:
+    adguardhome_resolver:
+      entryPoints:
+        - https
+      rule: "Host(`dns.local.example.com`)"
+      tls:
+        certResolver: cloudflare
+      service: adguardhome_resolver
+    adguardhome_sync:
+      entryPoints:
+        - https
+      rule: "Host(`dns-sync.local.example.com`)"
+      tls:
+        certResolver: cloudflare
+      service: adguardhome_sync
+
+  services:
+    adguardhome_resolver:
+      loadBalancer:
+        servers:
+          - url: "http://adguardhome-resolver-1:80/"
+    adguardhome_sync:
+      loadBalancer:
+        servers:
+          - url: "http://adguardhome-sync-1:8080/"
