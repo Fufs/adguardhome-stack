@@ -1,0 +1,48 @@
+cron: "*/15 * * * *" # Every 15mins
+
+runOnStart: true
+continueOnError: true
+
+origin:
+  url: http://resolver
+  # apiPath: /sync/control
+  # insecureSkipVerify: true # disable tls check
+  username: USER
+  password: PASSWORD
+
+replicas:
+  - url: https://HOST2
+    username: USER2
+    password: PASSWORD2
+    #autoSetup: true # if true, AdGuardHome is automatically initialized.
+
+api:
+  port: 8080
+  username: DASHBOARD_USER
+  password: DASHBOARD_PASSWORD
+  darkMode: true
+
+# metrics:
+  # enabled: true
+  # scrapeInterval: 30s
+  # queryLogLimit: 10000
+
+# tls:
+#   certDir: /path/to/certs
+#   certName: foo.crt
+#   keyName: bar.key
+
+features:
+  generalSettings: true
+  queryLogConfig: true
+  statsConfig: true
+  clientSettings: true
+  services: true
+  filters: true
+  dhcp:
+    serverConfig: true
+    staticLeases: true
+  dns:
+    serverConfig: true
+    accessLists: true
+    rewrites: true
